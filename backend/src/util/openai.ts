@@ -17,7 +17,7 @@ export const getCompletion = async (prompt: string) => {
       },
       {
         role: "user",
-        content: `I need help summarizing the following email: ${prompt}. Summarize it for me. Return in json format {sender: string, recipient: string, subject: string, body: string}.`,
+        content: `I need help summarizing the following email: ${prompt}. Summarize it for me`,
       },
     ],
     model: "gpt-3.5-turbo",

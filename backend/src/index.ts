@@ -1,9 +1,11 @@
 import express from "express";
 import { getCompletion } from "./util/openai";
+import cors from "cors";
 
 const PORT = 5500;
 
 const app = express();
+app.use(cors());
 app.use(express.json());
 
 // app.get("/summarize", async (req, res) => {
@@ -14,7 +16,7 @@ app.use(express.json());
 // });
 
 app.post("/summarize", async (req, res) => {
-  const prompt = req.body.prompt;
+  const prompt = req.body.text;
 
   if (!prompt) {
     res.status(400).json({ error: "Prompt is required" });
@@ -27,9 +29,9 @@ app.post("/summarize", async (req, res) => {
 
   console.log("Completion: ", completion);
 
-  const completionJSON = JSON.parse(completion as string);
+  // const completionJSON = JSON.parse(completion as string);
 
-  res.json(completionJSON);
+  res.send(completion);
 });
 
 app.get("/", (req, res) => {
