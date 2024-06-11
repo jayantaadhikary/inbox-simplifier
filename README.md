@@ -13,8 +13,9 @@ The current tech stack is ExpressJS for the Summarization backend and NextJS for
    `OPENAI_API_KEY=YOUR_API_KEY_HERE`
 5. Create a `.env.local` file in the frontend directory and add the following:
 
-```GOOGLE_CLIENT_ID=YOUR_GOOGLE_CLIENT_ID_HERE
-    GOOGLE_CLIENT_SECRET=YOUR_GOOGLE
+```
+    GOOGLE_CLIENT_ID=YOUR_GOOGLE_CLIENT_ID_HERE
+    GOOGLE_CLIENT_SECRET=YOUR_GOOGLE_CLIENT_SECRET_HERE
     NEXTAUTH_URL=http://localhost:3000
 ```
 
