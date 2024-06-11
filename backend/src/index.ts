@@ -4,30 +4,31 @@ import { getCompletion } from "./util/openai";
 const PORT = 5500;
 
 const app = express();
+app.use(express.json());
 
-const examplePrompt = `Subject: Meeting Request for Project Update
+// app.get("/summarize", async (req, res) => {
+//   const prompt = examplePrompt;
+//   const completion = await getCompletion(prompt);
+//   const completionJSON = JSON.parse(completion as string);
+//   res.json(completionJSON);
+// });
 
-Dear Mr. Smith,
+app.post("/summarize", async (req, res) => {
+  const prompt = req.body.prompt;
 
-I hope this email finds you well.
+  if (!prompt) {
+    res.status(400).json({ error: "Prompt is required" });
+    return;
+  }
 
-I am writing to request a meeting to discuss the current progress of our ongoing project. I would like to review the key milestones we have achieved so far and outline the next steps for the upcoming quarter.
+  console.log("Prompt: ", prompt);
 
-Could we schedule a meeting for next Monday at 10:00 AM? Please let me know if this time is convenient for you, or suggest an alternative that fits your schedule.
-
-Thank you for your time and consideration.
-
-Best regards,
-
-John Doe
-Project Manager
-XYZ Corporation
-john.doe@xyz.com`;
-
-app.get("/summarize", async (req, res) => {
-  const prompt = examplePrompt;
   const completion = await getCompletion(prompt);
+
+  console.log("Completion: ", completion);
+
   const completionJSON = JSON.parse(completion as string);
+
   res.json(completionJSON);
 });
 
